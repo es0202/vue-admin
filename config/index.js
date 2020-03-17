@@ -3,14 +3,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -33,7 +33,7 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help

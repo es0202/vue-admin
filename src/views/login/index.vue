@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="logo"></div>
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left" name="EMSYSMANAGE">
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user"></svg-icon>
@@ -23,6 +23,7 @@
 <script>
 import SvgIcon from '@/components/SvgIcon';
 import { validateUsername, validatePassword } from '@/utils/validate.js';
+// import Cookies from 'js-cookie';
 export default {
   data() {
     const checkUsername = (rule, value, callback) => {
@@ -30,13 +31,14 @@ export default {
       validateUsername(value) ? callback() : callback(new Error('请输入正确的用户名'));
     };
     const checkPassword = (rule, value, callback) => {
+      //自定义校验 callback必须被调用
       validatePassword(value) ? callback() : callback(new Error('密码不能小于六位'));
     };
     return {
       //登录表单model，默认值
       loginForm: {
-        username: 'admin',
-        password: '111222'
+        username: '171431',
+        password: '256917es'
       },
       //登录表单校验规则
       loginRules: {
@@ -45,9 +47,22 @@ export default {
       }
     };
   },
-  methods:{
-    loginSubmit(){
-
+  methods: {
+    loginSubmit() {
+      //this.loginForm为data中的model,无validate方法
+      //必传callback 否则为promise
+      //param: boolean,object (是否校验成功,未通过校验的字段)
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.$store.dispatch('user/login', this.loginForm).then(data => {
+            if (data.Code == 1) {
+              window.location = data.Data;
+            }
+          });
+        } else {
+          console.log('loginForm submit error!');
+        }
+      });
     }
   }
 };

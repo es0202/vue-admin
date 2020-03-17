@@ -7,6 +7,7 @@ import Element from 'element-ui'
 import Cookies from 'js-cookie'
 import SvgIcon from '@/components/SvgIcon'// svg component
 import 'element-ui/lib/theme-chalk/index.css'
+import store from './store'
 
 // 注册全局组件
 Vue.component('svg-icon', SvgIcon)
@@ -28,6 +29,7 @@ Vue.use(Element, {
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
