@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div class="logo"></div>
+    <div class="logo-wrapper">
+      <div class="logo"></div>
+      <div class="title">通行证管理后台系统</div>
+    </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left" name="EMSYSMANAGE">
       <el-form-item prop="username">
         <span class="svg-container">
@@ -10,7 +13,7 @@
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="pwd"></svg-icon>
+          <svg-icon icon-class="lock"></svg-icon>
         </span>
         <el-input placeholder="密码" v-model="loginForm.password" show-password></el-input>
       </el-form-item>
@@ -55,9 +58,10 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$store.dispatch('user/login', this.loginForm).then(data => {
-            if (data.Code == 1) {
-              window.location = data.Data;
-            }
+            // if (data.Code == 1) {
+            //Code肯定为1
+            window.location = data.Data;
+            // }
           });
         } else {
           console.log('loginForm submit error!');
@@ -74,29 +78,44 @@ export default {
   background-color: #2d3a4b;
   width: 100%;
   min-height: 100%;
-  padding-top: 100px;
-  .logo {
-    background: url('../../assets/logo.png') no-repeat;
-    width: 100px;
-    height: 100px;
+  padding-top: 160px;
+  .logo-wrapper {
     margin: 0 auto;
+    width: 420px;
+    max-width: 100%;
+    .logo {
+      background: url('../../assets/logo.png') no-repeat;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .title{
+      display: inline-block;
+      font-size: 28px;
+      vertical-align: middle;
+      color: #fff;
+      margin-right: 20px;
+    }
   }
   .el-form {
-    width: 360px;
+    width: 420px;
     max-width: 100%;
     margin: 0 auto;
-    background: #eceef1;
-    padding: 30px;
+    margin-top:20px;
+    // background: #000001;
+    // padding: 30px;
     .el-form-item {
       margin-bottom: 22px;
-      border: 1px solid #dde3ec;
+      border: 1px solid rgba(180,188,200,0.5);
+      border-radius: 5px;
       text-align: left;
-      background: #dde3ec;
+      background: rgba(48,49,51,0.2);
       .svg-container {
-        width: 30px;
+        width: 24px;
         display: inline-block;
-        height: 30px;
-        padding: 6px 4px 6px 8px;
+        height: 24px;
+        padding: 0 4px 0 8px;
         vertical-align: middle;
       }
       .el-input {
@@ -113,7 +132,8 @@ export default {
           box-sizing: border-box;
           font-size: 18px;
           outline: none;
-          background: #dde3ec;
+          background: rgba(48,49,51,0.2);
+          color: #fff;
         }
         /deep/ i {
           color: #889aa4;
@@ -122,6 +142,7 @@ export default {
     }
     .el-button {
       width: 100%;
+      font-size: 18px;
     }
   }
 }

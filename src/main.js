@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import Element from 'element-ui'
 import Cookies from 'js-cookie'
-import SvgIcon from '@/components/SvgIcon'// svg component
+import SvgIcon from '@/components/SvgIcon' // svg component
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
+import './permission' //路由拦截
 
 // 注册全局组件
 Vue.component('svg-icon', SvgIcon)
@@ -30,6 +31,8 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
