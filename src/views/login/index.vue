@@ -4,7 +4,7 @@
       <div class="logo"></div>
       <div class="title">通行证管理后台系统</div>
     </div>
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left" name="EMSYSMANAGE">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user"></svg-icon>
@@ -40,8 +40,8 @@ export default {
     return {
       //登录表单model，默认值
       loginForm: {
-        username: '171431',
-        password: '256917es'
+        username: '',
+        password: ''
       },
       //登录表单校验规则
       loginRules: {
