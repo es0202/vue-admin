@@ -1,7 +1,14 @@
 <template>
   <div class="sidebar-container">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu background-color="#364150" text-color="#b4bcc8" active-text-color="#409eef">
+      <el-menu
+        background-color="#364150"
+        text-color="#b4bcc8"
+        active-text-color="#409eef"
+        mode="vertical"
+        :collapse-transition="false"
+        :default-active="activeMenu"
+      >
         <item v-for="path in menuList" :item="path" :key="path.Id"></item>
       </el-menu>
     </el-scrollbar>
@@ -22,6 +29,11 @@ export default {
       this.menuList = data.Data;
     });
   },
+  computed: {
+    activeMenu() {
+      return this.$route.path;
+    }
+  },
   methods: {},
   components: { Item }
 };
@@ -34,7 +46,11 @@ export default {
   left: 0;
   top: 0;
   bottom: 0;
-  .scrollbar-wrapper {
+}
+.el-scrollbar {
+  //不设置高度将无法滚动
+  height: 100%;
+  /deep/.scrollbar-wrapper {
     overflow-x: hidden !important;
   }
 }

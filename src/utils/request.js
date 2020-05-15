@@ -1,11 +1,13 @@
 /* 封装axios */
 import axios from 'axios'
 import {
-  Message,MessageBox
+  Message,
+  MessageBox
 } from 'element-ui'
 import store from '@/store'
 import {
-  getToken
+  getToken,
+  removeToken
 } from '@/utils/auth'
 
 // 创建axios实例
@@ -36,6 +38,9 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data;
+    if (response.config.url == "/UserManage/GetSearchTypes") {
+      return res
+    }
     if (res.Code !== 1) {
       Message({
         message: res.Msg,
@@ -60,13 +65,21 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
+    if (error.config.url == '/Home/GetUserMenus') {
+      //getmenu登录失效后端redirect /Home/Login
+      //proxy拦截不能修改router?
+      //router redirect拦截不住
+      removeToken('pass-key')
+      window.location.href = '#/login'
+    } else {
+      console.log('err' + error) // for debug
+      Message({
+        message: error.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      return Promise.reject(error)
+    }
   })
 
 export default service

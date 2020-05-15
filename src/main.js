@@ -27,7 +27,7 @@ Vue.use(Element, {
 })
 
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   store,
@@ -36,3 +36,4 @@ new Vue({
   },
   template: '<App/>'
 })
+window.vm = vm

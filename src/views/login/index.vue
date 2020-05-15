@@ -6,15 +6,11 @@
     </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
       <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user"></svg-icon>
-        </span>
+        <svg-icon icon-class="user" class-name="svg-container"></svg-icon>
         <el-input placeholder="用户名" v-model="loginForm.username" clearable></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="lock"></svg-icon>
-        </span>
+        <svg-icon icon-class="lock" class-name="svg-container"></svg-icon>
         <el-input placeholder="密码" v-model="loginForm.password" show-password></el-input>
       </el-form-item>
       <!--.prevent修饰符 提交事件不再重载页面-->
@@ -24,7 +20,6 @@
 </template>
 
 <script>
-import SvgIcon from '@/components/SvgIcon';
 import { validateUsername, validatePassword } from '@/utils/validate.js';
 // import Cookies from 'js-cookie';
 export default {
@@ -90,7 +85,7 @@ export default {
       display: inline-block;
       vertical-align: middle;
     }
-    .title{
+    .title {
       display: inline-block;
       font-size: 28px;
       vertical-align: middle;
@@ -102,21 +97,22 @@ export default {
     width: 420px;
     max-width: 100%;
     margin: 0 auto;
-    margin-top:20px;
+    margin-top: 20px;
     // background: #000001;
     // padding: 30px;
     .el-form-item {
       margin-bottom: 22px;
-      border: 1px solid rgba(180,188,200,0.5);
+      border: 1px solid rgba(180, 188, 200, 0.5);
       border-radius: 5px;
       text-align: left;
-      background: rgba(48,49,51,0.2);
+      background: rgba(48, 49, 51, 0.2);
       .svg-container {
         width: 24px;
         display: inline-block;
         height: 24px;
         padding: 0 4px 0 8px;
         vertical-align: middle;
+        fill: #b4bcc8;
       }
       .el-input {
         display: inline-block;
@@ -132,7 +128,7 @@ export default {
           box-sizing: border-box;
           font-size: 18px;
           outline: none;
-          background: rgba(48,49,51,0.2);
+          background: rgba(48, 49, 51, 0.2);
           color: #fff;
         }
         /deep/ i {
